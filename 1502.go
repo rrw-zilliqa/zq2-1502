@@ -19,7 +19,13 @@ func main() {
 		fmt.Printf("Chain id is not an integer: %v\n", err)
 		return
 	}
-	privateKey := "0000000000000000000000000000000000000000000000000000000000000002"
+	//               0123456789012345678901234567890123456789012345678901234567890123
+	// "priv":         "0F494B8312E8D257E51730C78F8FE3B47B6840C59AAAEC7C2EBE404A2DE8B25A",
+	privateKeyX := "0000000000000000000000000000000000000000000000000000000000000002"
+	privateKeyXHex := util.DecodeHex(privateKeyX)
+	fmt.Printf("X len = %d %s\n\n", len(privateKeyXHex), util.EncodeHex(privateKeyXHex))
+
+	privateKey := "e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930"
 	fmt.Printf("Private Key: %s\n\n", privateKey)
 	wallet := account.NewWallet()
 	wallet.AddByPrivateKey(privateKey)
@@ -65,7 +71,7 @@ func main() {
 	tx := &transaction.Transaction{
 		Version:      versionStr,
 		Nonce:        strconv.FormatInt(balAndNonce.Nonce+1, 10),
-		ToAddr:       "4BAF5faDA8e5Db92C3d3242618c5B47133AE003C",
+		ToAddr:       "0x4BAF5faDA8e5Db92C3d3242618c5B47133AE003C",
 		Amount:       "10000000",
 		GasPrice:     gasPrice,
 		GasLimit:     "50000",
